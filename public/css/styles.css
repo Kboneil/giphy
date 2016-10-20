@@ -1,0 +1,63 @@
+body {
+width:100%;
+text-align: center;
+font-family: 'Luckiest Guy', cursive;
+letter-spacing: 2px;
+}
+h1 {
+  background-color: black;
+  padding-top: 20px;
+  color: purple;
+  text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+  letter-spacing: 4px;
+}
+header {
+  background-color: black;
+  width: 100%;
+  padding-bottom: 20px;
+  border-top: 4px solid purple;
+  border-bottom: 4px solid purple;
+}
+#images {
+  margin: auto;
+}
+p {
+  display: inline-block;
+}
+img {
+  width: 200px;
+  padding: 0 10px;
+}
+#random {
+  padding: 20px;
+}
+
+img:hover {
+  position: relative;
+  transform: scale(1.50,1.50);
+    }
+img:active {
+  position: absolute;
+  top: 20%;
+  left:50%;
+  width:80%;
+  height:80%
+  transform: translateY(-50%);
+  transform: translateX(-50%);
+
+}
+button, input {
+  outline: none;
+  padding-top: 5px;
+  margin: 0;
+  background-color: #fff;
+  height:20px;
+  border: 2px solid purple;
+  border-radius: 5px;
+  font-family: 'Luckiest Guy', cursive;
+  letter-spacing: 2px;
+}
+
+button:active, input:active {
+  outline: yellow solid;
+}
