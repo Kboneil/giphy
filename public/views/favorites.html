@@ -1,1 +1,6 @@
-<h1>Fav</h1>
+<h2>Favorites</h2>
+<div ng-repeat="favorites in fav.favResults track by $index" class="gifGroup">
+  <img id="random" ng-model="fav.favoriteGif.image" ng-src='{{ favorites.image }}'/>
+  <br />
+  <p>{{favorites.comment}}</p>
+</div>

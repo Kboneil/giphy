@@ -32,7 +32,7 @@ img {
   padding: 20px;
 }
 
-img:hover {
+/*img:hover {
   position: relative;
   transform: scale(1.50,1.50);
     }
@@ -45,7 +45,7 @@ img:active {
   transform: translateY(-50%);
   transform: translateX(-50%);
 
-}
+}*/
 button, input {
   outline: none;
   padding-top: 5px;

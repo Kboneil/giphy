@@ -7,7 +7,6 @@ function gifService($http) {
   this.getRandom = function () {
     return $http.get(API + '/random?api_key=dc6zaTOxFJmzC')
         .then(function (response) {
-          console.log(response.data.data.image_url);
           return response.data.data.image_url;
         });
   };
@@ -20,15 +19,22 @@ function gifService($http) {
   };
 
   this.favorite = function (favorite) {
-    var object = favorite;
-    console.log('data', object);
-    return $http({ method: "POST", url: '/favorites', data: object});
 
+  return $http({
+      method: 'POST',
+      url: '/fav',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      transformRequest: function(obj) {
+          var str = [];
+          for(var p in obj)
+          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+          return str.join("&");
+      },
+      data: {comment: favorite.comment, image: favorite.image}
+  })
 
-    // var data = data
-    // $http.post('/favorites', data)
-    //     .then(function (response) {
-    //       console.log('in favorite get succss');
-    //     });
+        .then(function (response) {
+          console.log('in favorite get succss');
+        });
   };
 }

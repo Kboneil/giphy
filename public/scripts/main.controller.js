@@ -23,8 +23,16 @@ function MainController(gif) {
 
   };
 
-  main.favorite = function () {
+  main.randomFavorite = function () {
     main.favoriteGif.image = main.random;
+    var data = main.favoriteGif
+    gif.favorite(data).then(function () {
+      console.log('then favorite');
+    });
+  };
+  main.searchFavorite = function () {
+    console.log('main.index', main.favoriteGif.index);
+    main.favoriteGif.image = image.images.downsized_large.url;
     var data = main.favoriteGif
     gif.favorite(data).then(function () {
       console.log('then favorite');
