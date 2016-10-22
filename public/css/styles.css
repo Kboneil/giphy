@@ -21,7 +21,7 @@ header {
 #images {
   margin: auto;
 }
-p {
+.gifGroup {
   display: inline-block;
 }
 img {

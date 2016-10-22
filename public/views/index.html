@@ -3,25 +3,26 @@
   <head>
     <meta charset="utf-8">
     <title>GIPHY!</title>
-    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js'></script>
+    <script src="vendor/angular.min.js"></script>
+    <script src="vendor/angular-route.min.js"></script>
     <script src='scripts/module.js'></script>
+    <script src="scripts/config.js"></script>
     <script src='scripts/main.controller.js'></script>
     <script src='scripts/giphy.service.js'></script>
     <link rel='stylesheet' href='css/styles.css' />
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+    <base href="/" />
   </head>
-  <body ng-app='giphyApp' ng-controller='MainController as main'>
+  <body ng-app='giphyApp'>
     <header>
       <h1>GET A GIPHY!</h1>
-      <div id="input">
-        <button ng-click='main.getRandom()'>Random GIPHY</button>
-        <input ng-model='main.search' />
-        <button type='submit' ng-click='main.getGif()'>Search</button>
-      </div>
     </header>
-      <div id="images">
-        <h5>click on GIFs to expand</h5>
-        <p ng-repeat='image in main.results track by $index'><img ng-src='{{ image.images.downsized_large.url }}'/></p>
-        <img id="random" ng-src='{{ main.random }}'/>
-      </div>
+    <nav>
+      <a href="/home">Home</a>
+      <a href="/favorites">Favorites {{main.favNum}}</a>
+    </nav>
+    <ng-view>
+
+    </ng-view>
+    </body>
 </html>

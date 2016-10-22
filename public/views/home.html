@@ -1,0 +1,22 @@
+<main id="input">
+  <button ng-click='main.getRandom()'>Random GIPHY</button>
+  <input ng-model='main.search' />
+  <button type='submit' ng-click='main.getGif(main.search)'>Search</button>
+</div>
+<div id="images">
+  <h5>click on GIFs to expand</h5>
+  <div class="gifGroup" ng-repeat='image in main.results track by $index'>
+    <img ng-model="main.favoriteGif.image" ng-src='{{ image.images.downsized_large.url }}'/>
+    <br />
+    <textarea type="text" placeholder="comment" ng-model="main.favoriteGif.comment"></textarea>
+    <br />
+    <button class="favorite" type="submit" ng-click="main.favorite()">Favorite</button>
+  </div>
+  <div class="gifGroup">
+    <img id="random" ng-model="main.favoriteGif.image" ng-src='{{ main.random }}'/>
+    <br />
+    <textarea type="text" placeholder="comment" ng-model="main.favoriteGif.comment"></textarea>
+    <br />
+    <button class="favorite" type="submit" ng-click="main.favorite()">Favorite</button>
+  </div>
+</main>
