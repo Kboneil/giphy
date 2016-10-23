@@ -7,23 +7,25 @@ var config = {
 
 var pool = new pg.Pool(config);
 
+//gets all the content from favorites table
 router.get('/', function (req, res) {
   console.log('in get function');
   pool.connect(function (err, client, done) {
     try {
       if (err) {
+        console.log('Error querying to DB', err);
         res.sendStatus(500);
         return;
       }
-      //finds all the information from the list table
+
       client.query('SELECT * FROM favorites',
             function (err, result) {
               if (err) {
+                console.log('Error querying DB', err);
                 res.sendStatus(500);
                 return;
               }
-              //and sends it back to the client.js
-              console.log('results.rows', result.rows);
+
               res.send(result.rows);
             });
     } finally {
@@ -32,12 +34,14 @@ router.get('/', function (req, res) {
   });
 });
 
+//inserts the favorited GIF into the database
 router.post('/', function (req, res) {
   console.log('in post function req', req.body);
   pool.connect(function (err, client, done) {
     console.log('req: ', req.body);
     try {
       if (err) {
+        console.log('Error querying to DB', err);
         res.sendStatus(500);
         return;
       }
@@ -46,45 +50,48 @@ router.post('/', function (req, res) {
         [req.body.comment, req.body.image],
         function (err, result) {
           if (err) {
-            console.log('Issue Querying the DB', err);
+            console.log('Error querying DB', err);
             res.sendStatus(500);
             return;
           }
 
           res.send(result.rows);
-        })
+        });
     } finally {
       done();
     }
   });
 });
 
-router.delete('/:id', function(req, res){
+//deletes row with corresponding id
+router.delete('/:id', function (req, res) {
   var id = req.params.id;
-  pool.connect(function(err, client, done){
-    try{
-      if(err){
+  pool.connect(function (err, client, done) {
+    try {
+      if (err) {
         console.log('Error connecting to DB', err);
         res.sendStatus(500);
         return;
       }
 
-      client.query('DELETE FROM favorites WHERE id=$1', [id], function(err){
-        if(err){
+      client.query('DELETE FROM favorites WHERE id=$1', [id], function (err) {
+        if (err) {
           console.log('Error querying DB', err);
           res.sendStatus(500);
           return;
         }
+
         res.sendStatus(204);
       });
 
-    }finally{
+    }finally {
       done();
     }
   });
 
 });
 
+//updates row with corresponding id
 router.put('/:id', function (req, res) {
   var id = req.params.id;
   var comment = req.body.comment;
@@ -93,10 +100,11 @@ router.put('/:id', function (req, res) {
   pool.connect(function (err, client, done) {
     try {
       if (err) {
-        console.log('Error querying to the DB', err);
+        console.log('Error querying to DB', err);
         res.sendStatus(500);
         return;
       }
+
       client.query('UPDATE favorites SET comment=$1, image=$2 WHERE id=$3 RETURNING *;',
       [comment, image, id],
       function (err, result) {
@@ -105,8 +113,7 @@ router.put('/:id', function (req, res) {
           res.sendStatus(500);
 
         } else {
-          console.log("result.rows", result.rows);
-          //sens the updated information back to client.js so it can be appended
+          console.log('result.rows', result.rows);
           res.send(result.rows);
         }
       });

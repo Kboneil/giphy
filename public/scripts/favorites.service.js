@@ -3,8 +3,8 @@ angular.module('giphyApp')
 
 function favoriteService($http) {
 
+  //sends a get request to put all the favorites on the page
   this.getFavorite = function () {
-    console.log('in favorite.service get');
     return $http.get('/fav')
         .then(function (response) {
           console.log('response', response.data);
@@ -12,30 +12,32 @@ function favoriteService($http) {
         });
   };
 
+  //sends a delete request that will use the id
+  //as a parameter
   this.delete = function (id) {
-    console.log('id in delete function', id);
     return $http.delete('/fav/' + id)
         .then(function (response) {
           console.log('delete complete');
         });
   };
 
-
+  //sends a post request to update the comment
+  //uses the id as a parameter
   this.update = function (id, comment, image) {
     return $http({
       method: 'PUT',
       url: '/fav/' + id,
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      transformRequest: function(obj) {
+      transformRequest: function (obj) {
         var str = [];
-        for(var p in obj)
+        for (var p in obj)
         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
         return str.join("&");
       }, data: { comment: comment, image: image }
     }).then(function (result) {
         return result;
-        console.log(result);
-    });
+        console.log('update complete');
+      });
   };
 
 }

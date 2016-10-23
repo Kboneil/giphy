@@ -1,12 +1,16 @@
 body {
 width:100%;
 text-align: center;
-font-family: 'Luckiest Guy', cursive;
 letter-spacing: 2px;
+font-family: 'Luckiest Guy', cursive;
+}
+main{
+  font-family: 'Rubik', sans-serif;
 }
 h1 {
+  font-size: 500%;
   background-color: black;
-  padding-top: 20px;
+  padding-top: 10px;
   color: purple;
   text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
   letter-spacing: 4px;
@@ -14,50 +18,82 @@ h1 {
 header {
   background-color: black;
   width: 100%;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   border-top: 4px solid purple;
+}
+
+nav {
+  background-color: black;
+  width: 100%;
+  padding-bottom: 20px;
   border-bottom: 4px solid purple;
 }
-#images {
-  margin: auto;
+nav.row {
+  margin-left: 0;
 }
-.gifGroup {
-  display: inline-block;
+a{
+  font-size: 30px;
+  padding:15px;
+  width:200px;
+  color:purple;
 }
+a:hover {
+    background-color: purple;
+    color:black;
+}
+
 img {
-  width: 200px;
+  width: 100%;
   padding: 0 10px;
 }
 #random {
   padding: 20px;
 }
 
-/*img:hover {
+img:hover {
   position: relative;
-  transform: scale(1.50,1.50);
+  transform: scale(1.05,1.05);
+  margin-bottom: 10px;
     }
-img:active {
-  position: absolute;
-  top: 20%;
-  left:50%;
-  width:80%;
-  height:80%
-  transform: translateY(-50%);
-  transform: translateX(-50%);
-
-}*/
+.favoriteInput{
+  width: 100%;
+  margin-bottom: 0;
+  text-align: center;
+}
 button, input {
   outline: none;
   padding-top: 5px;
-  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
   background-color: #fff;
-  height:20px;
+  height:40px;
   border: 2px solid purple;
   border-radius: 5px;
-  font-family: 'Luckiest Guy', cursive;
   letter-spacing: 2px;
 }
-
+button {
+  padding: 10px;
+  color: purple;
+  background-color: black;
+}
+input {
+    border: none;
+    border-bottom: 2px solid purple;
+    padding-left: 5px;
+    border-radius: 0;
+    width: 88%;
+}
+.search {
+  width: 190px;
+  border: 2px solid purple;
+  border-radius: 5px;
+}
+button:hover {
+  font-weight:bolder;
+}
 button:active, input:active {
   outline: yellow solid;
+}
+.searchImage{
+  padding: 10px;
 }

@@ -1,15 +1,25 @@
-<nav >
-  <a href="/home">Home</a>
-  <a href="/favorites">Favorites {{fav.number}}</a>
+<nav class="row">
+  <div class="col-xs-0 col-sm-2 col-md-3">
+  </div>
+  <a href="/home" class="col-xs-12 col-sm-4 col-md-3">Home</a>
+  <a href="/favorites" class="col-xs-12 col-sm-4 col-md-3">Favorites ({{fav.number}})</a>
+  <div class="col-xs-0 col-sm-2 col-md-3">
+  </div>
 </nav>
 <h2>Favorites</h2>
 <div ng-repeat="favorites in fav.favResults track by $index">
-  <div class="gifGroup" ng-model="fav.newscopeobj">
-    <img ng-model="newscopeobj" ng-src='{{ favorites.image }}'/>
+  <div class="row">
+    <div class="col-xs-1 col-sm-2 col-md-3 col-lg-4">
+    </div>
+  <div ng-model="fav.newscopeobj" class="col-xs-10 col-sm-8 col-md-6 col-lg-4">
+    <img ng-model="newscopeobj" ng-src='{{ favorites.image }}' ng-click="reveal = !reveal"/>
     <br />
-    <input type="text" ng-model="newscopeobj" ng-value="'{{favorites.comment}}'"></input>
+    <input class="favoriteInput" type="text" ng-model="newscopeobj" ng-value="'{{favorites.comment}}'" ng-show="reveal"></input>
     <br />
-    <button type="submit" ng-model="newscopeobj" ng-click="fav.update(fav.favResults[$index].id, newscopeobj, favorites.image)">Update</button>
-    <button type="submit" ng-model="newscopeobj" ng-click="fav.delete(fav.favResults[$index].id)">Delete</button>
+      <button type="submit" ng-model="newscopeobj" ng-click="fav.update(fav.favResults[$index].id, newscopeobj, favorites.image)" ng-show="reveal"> Update  <span class="glyphicon glyphicon-arrow-right"></span> </button>
+      <button type="submit" ng-model="newscopeobj" ng-click="fav.delete(fav.favResults[$index].id)" ng-show="reveal"> Delete  <span class="glyphicon glyphicon-trash"></span> </button>
+    </div>
+    <div class="col-xs-1 col-sm-2 col-md-3 col-lg-4">
+    </div>
   </div>
 </div>

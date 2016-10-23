@@ -4,11 +4,16 @@ angular.module('giphyApp')
 function FavController(fav) {
   var main = this;
 
+  //gets all the favorite information from
+  //the database, so it can be added on load
   fav.getFavorite(main).then(function (databaseInfo) {
     main.favResults = databaseInfo;
+
+    //updates the favorite number in the header
     main.number = databaseInfo.length;
   });
 
+  //deletes an entry on click using the id number
   main.delete = function (id) {
     console.log('id', id);
     fav.delete(id).then(function () {
@@ -20,10 +25,8 @@ function FavController(fav) {
     });
   };
 
+  //updates the comment on click
   main.update = function (id, comment, image) {
-    console.log('id', id);
-    console.log('comment', comment);
-    console.log('image', image);
     fav.update(id, comment, image).then(function () {
       fav.getFavorite(main).then(function (databaseInfo) {
         console.log("databaseInfo", databaseInfo);
