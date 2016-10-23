@@ -59,4 +59,62 @@ router.post('/', function (req, res) {
   });
 });
 
+router.delete('/:id', function(req, res){
+  var id = req.params.id;
+  pool.connect(function(err, client, done){
+    try{
+      if(err){
+        console.log('Error connecting to DB', err);
+        res.sendStatus(500);
+        return;
+      }
+
+      client.query('DELETE FROM favorites WHERE id=$1', [id], function(err){
+        if(err){
+          console.log('Error querying DB', err);
+          res.sendStatus(500);
+          return;
+        }
+        res.sendStatus(204);
+      });
+
+    }finally{
+      done();
+    }
+  });
+
+});
+
+router.put('/:id', function (req, res) {
+  var id = req.params.id;
+  var comment = req.body.comment;
+  var image = req.body.image;
+
+  pool.connect(function (err, client, done) {
+    try {
+      if (err) {
+        console.log('Error querying to the DB', err);
+        res.sendStatus(500);
+        return;
+      }
+      client.query('UPDATE favorites SET comment=$1, image=$2 WHERE id=$3 RETURNING *;',
+      [comment, image, id],
+      function (err, result) {
+        if (err) {
+          console.log('Error querying database', err);
+          res.sendStatus(500);
+
+        } else {
+          console.log("result.rows", result.rows);
+          //sens the updated information back to client.js so it can be appended
+          res.send(result.rows);
+        }
+      });
+    } finally {
+      done();
+    }
+  });
+
+});
+
 module.exports = router;

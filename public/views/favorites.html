@@ -3,8 +3,13 @@
   <a href="/favorites">Favorites {{fav.number}}</a>
 </nav>
 <h2>Favorites</h2>
-<div ng-repeat="favorites in fav.favResults track by $index" class="gifGroup">
-  <img id="random" ng-model="fav.favoriteGif.image" ng-src='{{ favorites.image }}'/>
-  <br />
-  <p>{{favorites.comment}}</p>
+<div ng-repeat="favorites in fav.favResults track by $index">
+  <div class="gifGroup" ng-model="fav.newscopeobj">
+    <img ng-model="newscopeobj" ng-src='{{ favorites.image }}'/>
+    <br />
+    <input type="text" ng-model="newscopeobj" ng-value="'{{favorites.comment}}'"></input>
+    <br />
+    <button type="submit" ng-model="newscopeobj" ng-click="fav.update(fav.favResults[$index].id, newscopeobj, favorites.image)">Update</button>
+    <button type="submit" ng-model="newscopeobj" ng-click="fav.delete(fav.favResults[$index].id)">Delete</button>
+  </div>
 </div>

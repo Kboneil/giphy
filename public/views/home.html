@@ -3,25 +3,24 @@
   <a href="/favorites">Favorites {{main.number}}</a>
 </nav>
 <main id="input">
-  <button ng-click='main.getRandom()'>Random GIPHY</button>
+  <button ng-click='main.getRandom()'>Random</button>
   <input ng-model='main.search' />
   <button type='submit' ng-click='main.getGif(main.search)'>Search</button>
 </div>
 <div id="images">
-  <h5>click on GIFs to expand</h5>
   <div ng-repeat="image in main.results track by $index">
-  <div class="gifGroup">
+  <div class="gifGroup" ng-model="main.newscopeobj">
     <img ng-model="newscopeobj" ng-src='{{ image.images.downsized_large.url }}'/>
     <br />
-    <textarea type="text" placeholder="comment" ng-model="newscopeobj"></textarea>
+    <input type="text" placeholder="comment" ng-model="newscopeobj"></input>
     <br />
     <button type="submit" ng-model="newscopeobj" ng-click="main.favorite(newscopeobj, image.images.downsized_large.url)">Favorite</button>
   </div>
 </div>
-<div class="gifGroup">
-  <img ng-model="newscopeobj" ng-src='{{ main.random }}'/>
+<div class="gifGroup" ng-model="main.group">
+  <img ng-model="main.newscopeobj" ng-src='{{ main.random }}'/>
   <br />
-  <textarea type="text" placeholder="comment" ng-model="newscopeobj"></textarea>
+  <input type="text" placeholder="comment" ng-model="main.newscopeobj"></input>
   <br />
-  <button type="submit" ng-model="newscopeobj" ng-click="main.favorite(newscopeobj, main.random)">Favorite</button>
+  <button type="submit" ng-model="main.newscopeobj" ng-click="main.favorite(main.newscopeobj, main.random)">Favorite</button>
 </div>

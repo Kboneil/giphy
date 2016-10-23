@@ -28,6 +28,8 @@ function MainController(gif) {
 
   main.favorite = function (comment, image) {
     var data = { comment: comment, image: image };
+    main.newscopeobj = null;
+    newscopeobj = null;
     gif.favorite(data).then(function (response) {
       gif.updateNumber().then(function (databaseInfo) {
         main.number = databaseInfo.length;
