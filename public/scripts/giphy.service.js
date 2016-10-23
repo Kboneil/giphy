@@ -19,22 +19,27 @@ function gifService($http) {
   };
 
   this.favorite = function (favorite) {
-
-  return $http({
+    return $http({
       method: 'POST',
       url: '/fav',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       transformRequest: function(obj) {
-          var str = [];
-          for(var p in obj)
-          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-          return str.join("&");
-      },
-      data: {comment: favorite.comment, image: favorite.image}
-  })
+        var str = [];
+        for(var p in obj)
+        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        return str.join("&");
+      }, data: { comment: favorite.comment, image: favorite.image }
+    }).then(function (result) {
+        return result;
+        console.log(result);
+    });
+  };
 
+  this.updateNumber = function () {
+    return $http.get('/fav')
         .then(function (response) {
-          console.log('in favorite get succss');
+          console.log('response', response.data);
+          return response.data;
         });
   };
 }

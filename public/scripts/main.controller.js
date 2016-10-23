@@ -15,7 +15,6 @@ function MainController(gif) {
 
   main.getGif = function (search) {
     main.results = [];
-    main.random = null;
 
     gif.getGif(main).then(function (search) {
       main.results = search;
@@ -23,19 +22,16 @@ function MainController(gif) {
 
   };
 
-  main.randomFavorite = function () {
-    main.favoriteGif.image = main.random;
-    var data = main.favoriteGif
-    gif.favorite(data).then(function () {
-      console.log('then favorite');
-    });
-  };
-  main.searchFavorite = function () {
-    console.log('main.index', main.favoriteGif.index);
-    main.favoriteGif.image = image.images.downsized_large.url;
-    var data = main.favoriteGif
-    gif.favorite(data).then(function () {
-      console.log('then favorite');
+  gif.updateNumber().then(function (databaseInfo) {
+    main.number = databaseInfo.length;
+  });
+
+  main.favorite = function (comment, image) {
+    var data = { comment: comment, image: image };
+    gif.favorite(data).then(function (response) {
+      gif.updateNumber().then(function (databaseInfo) {
+        main.number = databaseInfo.length;
+      });
     });
   };
 }
