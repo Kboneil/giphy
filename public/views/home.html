@@ -21,7 +21,7 @@
     <div ng-model="image.newscopeobj" class="row">
       <img ng-model="image.newscopeobj" ng-src='{{ image.images.downsized_large.url }}' ng-click="reveal = !reveal"/>
       <br />
-      <input type="text" placeholder="comment" ng-model="image.newscopeobj" name="searchInput" ng-show="reveal">{{image.comment}}</input>
+      <input type="text" placeholder="comment" ng-model="image.newscopeobj" id="searchInput" ng-show="reveal">{{image.comment}}</input>
       <button type="submit" ng-model="image.newscopeobj" ng-click="main.favorite(image.newscopeobj, image.images.downsized_large.url)" ng-show="reveal"><span class="glyphicon glyphicon-heart"></span></button>
     </div>
   </div>

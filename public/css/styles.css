@@ -1,8 +1,20 @@
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
 body {
 width:100%;
 text-align: center;
 letter-spacing: 2px;
 font-family: 'Luckiest Guy', cursive;
+position: relative;
+margin: 0;
+padding-bottom: 6rem;
+min-height: 100%;
 }
 main{
   font-family: 'Rubik', sans-serif;
@@ -96,4 +108,29 @@ button:active, input:active {
 }
 .searchImage{
   padding: 10px;
+}
+
+wrapper {
+	margin: 0 auto;
+  	padding-top: 64px;
+
+}
+
+footer {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+  left: 0;
+  background-color: black;
+  text-align: center;
+  border-bottom: 3px solid purple;
+  border-top: 3px solid purple;
+}
+
+footer p {
+  font-size: 20px;
+  padding-top: 15px;
+  text-shadow: 1px 0 0 #fff, -1px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff, 0.5px 1px #fff, -0.5px -0.5px 0 #fff, 0.5px -0.5px 0 #fff, -0.5px 0.5px 0 #fff;
+  color: purple;
+  letter-spacing: 5px;
 }
