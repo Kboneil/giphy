@@ -18,6 +18,8 @@ function MainController(gif) {
     main.results = [];
     gif.getGif(main).then(function (search) {
       main.results = search;
+      main.search = null;
+
     });
 
   };
