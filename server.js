@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var fav = require('./routes/fav');
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.use('/fav', fav);

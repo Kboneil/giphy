@@ -22,21 +22,10 @@ function gifService($http) {
 
   //sends a post function of favorited GIFs to be added to the database
   this.favorite = function (favorite) {
-    return $http({
-      method: 'POST',
-      url: '/fav',
-
-      //I had to add this to get the data to send correctly
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      transformRequest: function (obj) {
-        var str = [];
-        for (var p in obj)
-        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-        return str.join("&");
-      }, data: { comment: favorite.comment, image: favorite.image }
-    }).then(function (result) {
-        return result;
-      });
+    return $http.post('/fav', favorite)
+    .then(function (result) {
+      return result;
+    });
   };
 
   //gets the number of entries in database

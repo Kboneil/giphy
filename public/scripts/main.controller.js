@@ -19,7 +19,6 @@ function MainController(gif) {
     gif.getGif(main).then(function (search) {
       main.results = search;
       main.search = null;
-
     });
 
   };
@@ -39,7 +38,7 @@ function MainController(gif) {
 
     //this should clear out the search comment,
     //but it doesn't work
-    newscopeobj = null;
+    image.comment = null;
     gif.favorite(data).then(function (response) {
       //after a GIF is favorited it will update the number
       gif.updateNumber().then(function (databaseInfo) {

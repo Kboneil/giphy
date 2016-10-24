@@ -18,11 +18,11 @@
 </div>
 <div id="images" class="col-xs-10 col-sm-8 col-md-6 col-lg-4">
   <div class="searchImage" ng-repeat="image in main.results track by $index">
-    <div ng-model="main.newscopeobj" class="row">
-      <img ng-model="newscopeobj" ng-src='{{ image.images.downsized_large.url }}' ng-click="reveal = !reveal"/>
+    <div ng-model="image.newscopeobj" class="row">
+      <img ng-model="image.newscopeobj" ng-src='{{ image.images.downsized_large.url }}' ng-click="reveal = !reveal"/>
       <br />
-      <input type="text" placeholder="comment" ng-model="newscopeobj" ng-show="reveal"></input>
-      <button type="submit" ng-model="newscopeobj" ng-click="main.favorite(newscopeobj, image.images.downsized_large.url)" ng-show="reveal"><span class="glyphicon glyphicon-heart"></span></button>
+      <input type="text" placeholder="comment" ng-model="image.newscopeobj" name="searchInput" ng-show="reveal">{{image.comment}}</input>
+      <button type="submit" ng-model="image.newscopeobj" ng-click="main.favorite(image.newscopeobj, image.images.downsized_large.url)" ng-show="reveal"><span class="glyphicon glyphicon-heart"></span></button>
     </div>
   </div>
   <div>
